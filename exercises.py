@@ -37,7 +37,7 @@ class SimpleExercises:
 class RandomExercises:
     def __init__(self, mode="easy"):
         self.mode = mode
-        operator_dict = {"easy": ["+", "-"], "normal": ["*", "-", "+",]}
+        operator_dict = {"easy": ["+", "-"], "normal": ["*", "-", "+", "/"]}
         self.operators = operator_dict[mode]
 
     def next_exercise(self):
@@ -60,8 +60,11 @@ class RandomExercises:
                 temp = operand2
                 operand2 = operand1
                 operand1 = temp
-        else:
+        elif operator == "*":
             operand1 = random.randrange(5, 15)
             operand2 = random.randrange(5, 15)
-
+        else:
+            operand2 = random.randrange(5, 15)
+            result = random.randrange(5, 15)
+            operand1 = result * operand2
         return operand1, operand2
