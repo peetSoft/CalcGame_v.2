@@ -1,5 +1,5 @@
 from exercises import SimpleExercises, RandomExercises
-# This is a game
+# This is a game!!!
 # An ASCI-picture showing a player and a basket but no ball
 BASE_PIC = ''' 
               |                                  
