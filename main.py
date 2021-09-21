@@ -1,4 +1,5 @@
 from exercises import SimpleExercises, RandomExercises
+# Hello Pythionistas
 # This is a game!!!
 # An ASCI-picture showing a player and a basket but no ball
 BASE_PIC = ''' 
