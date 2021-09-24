@@ -1,4 +1,4 @@
-from exercises import SimpleExercises, RandomExercises
+from exercises import SimpleExercises, RandomExercises,mode_definition
 
 BASE_PIC = ''' 
               |                                  
@@ -60,8 +60,14 @@ for i in range(len(BASE_PIC)):
 
 print("Versenke den Ball im Korb, indem du Matheaufgaben rechnest:")
 print_basketball((1, 24))
+modes = mode_definition().keys()
+modes_as_string = "/".join(modes)
+mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
+while mode not in modes:
+    print("Falsche Eingabe")
+    mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
 
-exercises = RandomExercises("normal")
+exercises = RandomExercises(mode)
 while True:
     for ball_position in BALL_POSITIONS:
         user_input(exercises.next_exercise())
