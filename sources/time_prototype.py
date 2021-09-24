@@ -3,7 +3,8 @@ import time
 from contextlib import contextmanager
 
 
-class TimeoutException(Exception): pass
+class TimeoutException(Exception):
+    pass
 
 
 @contextmanager
@@ -27,10 +28,11 @@ def long_function_call():
         i += 1
 
 
-try:
-    with time_limit(8):
-        long_function_call()
-except TimeoutException as e:
-    print("Timed out!")
-else:
-    print("Exercise solved!")
+if __name__ == "__main__":
+    try:
+        with time_limit(8):
+            long_function_call()
+    except TimeoutException as e:
+        print("Timed out!")
+    else:
+        print("Exercise solved!")

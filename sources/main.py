@@ -1,4 +1,5 @@
 from exercises import SimpleExercises, RandomExercises,mode_definition
+from time_prototype import time_limit, TimeoutException
 
 BASE_PIC = ''' 
               |                                  
@@ -70,7 +71,14 @@ while mode not in modes:
 exercises = RandomExercises(mode)
 while True:
     for ball_position in BALL_POSITIONS:
-        user_input(exercises.next_exercise())
+        exercise = exercises.next_exercise()
+        try:
+            with time_limit(8):
+                user_input(exercise)
+        except TimeoutException as e:
+            print("Timed out!")
+        else:
+            print("Exercise solved!")
         print_basketball(ball_position)
 
     print("Geschafft, der Ball ist im Korb !!")
