@@ -37,8 +37,9 @@ class SimpleExercises:
 def mode_definition():
     return {"primitiv": ["+"],
             "easy": ["+", "-"],
-            "normal": ["*", "-", "+", "/"]}
-
+            "normal": ["*", "-", "+", "/"],
+            "hard": ["*", "-", "+", "/"]
+            }
 
 class RandomExercises:
     def __init__(self, mode="easy"):
