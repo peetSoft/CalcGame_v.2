@@ -1,4 +1,4 @@
-from exercises import SimpleExercises, RandomExercises,mode_definition
+from exercises import SimpleExercises, RandomExercises,mode_definitions
 from time_prototype import time_limit, TimeoutException
 
 BASE_PIC = ''' 
@@ -39,7 +39,7 @@ def user_input(exercise):
     while True:
 
         user_answer = input("Rechnen sie die Aufgabe: " + question + "=")
-        # user_answer = true_answer
+        # user_answer = true_answer ## Für Testzwecke
         try:
             user_answer_as_int = int(user_answer)
         except ValueError:
@@ -61,9 +61,9 @@ for i in range(len(BASE_PIC)):
 
 print("Versenke den Ball im Korb, indem du Matheaufgaben rechnest:")
 print_basketball((1, 24))
-modes = mode_definition().keys()
+modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
-mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
+mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
 while mode not in modes:
     print("Falsche Eingabe")
     mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
@@ -76,7 +76,7 @@ while True:
             with time_limit(8):
                 user_input(exercise)
         except TimeoutException as e:
-            print("Timed out!")
+            print("Time out!")
         else:
             print("Exercise solved!")
         print_basketball(ball_position)

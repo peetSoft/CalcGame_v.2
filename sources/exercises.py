@@ -34,18 +34,17 @@ class SimpleExercises:
         return current_exercise, eval(current_exercise)  # returns list
 
 
-def mode_definition():
-    return {"primitiv": ["+"],
-            "easy": ["+", "-"],
-            "normal": ["*", "-", "+", "/"],
-            "hard": ["*", "-", "+", "/"]
-            }
+mode_definitions = {
+    "primitiv": ["+"],
+    "easy": ["+", "-"],
+    "normal": ["*", "-", "+", "/"],
+    "hard": ["*", "-", "+", "/"]
+}
+
 
 class RandomExercises:
-    def __init__(self, mode="easy"):
-        self.mode = mode
-        operator_dict = mode_definition()
-        self.operators = operator_dict[mode]
+    def __init__(self, mode):
+        self.operators = mode_definitions[mode]
 
     def next_exercise(self):
         i = random.randrange(len(self.operators))
