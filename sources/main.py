@@ -1,32 +1,22 @@
-from exercises import SimpleExercises, RandomExercises,mode_definitions
+from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
-
-BASE_PIC = ''' 
-              |                                  
-              |____                     
-          / ~~| \\%/                      \\ 
-          |                               \\O
-          |                                |
-          |                                /|
-       ~~~~~~                             |  \\ '''
-
-BALL_POSITIONS = (
-    (0, 21),
-    (0, 17),
-    (0, 13),
-    (1, 9),
-    (2, 3),
-)
-
-pic_as_list = list(BASE_PIC)  # String will be converted to a list (because of immutability of string)
 
 
 def print_basketball(position):
     """
-    Inserts the sign of a ball ('o') in the BASE_PIC and prints the result
-    :param position: index of vertical bar and offset.
-    :return: None
+    Diese Fun
+    @param position:
+    @return: None
+
     """
+    """
+    Inserts the sign of a ball ("o") in the BASEPIC and prints the result
+    @param position: Index of vertical bar and offset
+    @return None
+
+
+    """
+
     vertical_bar_index, ball_offset = position
     pic_as_list[index_list[vertical_bar_index] + ball_offset] = 'o'  # Sign of ball inserted
     pic_as_string = "".join(pic_as_list)  # List converted back to the string
@@ -51,6 +41,23 @@ def user_input(exercise):
             print("Falsch ! Bitte nochmal")
 
 
+BASE_PIC = ''' 
+              |                                  
+              |____                     
+          / ~~| \\%/                      \\ 
+          |                               \\O
+          |                                |
+          |                                /|
+       ~~~~~~                             |  \\ '''
+
+BALL_POSITIONS = (
+    (0, 21),
+    (0, 17),
+    (0, 13),
+    (1, 9),
+    (2, 3),
+)
+
 ############ main program ##############
 
 # List of places of vertical bars ('|') in BASE_PIC
@@ -60,7 +67,6 @@ for i in range(len(BASE_PIC)):
         index_list.append(i)
 
 print("Versenke den Ball im Korb, indem du Matheaufgaben rechnest:")
-print_basketball((1, 24))
 modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
 mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
@@ -70,18 +76,22 @@ while mode not in modes:
 
 exercises = RandomExercises(mode)
 while True:
+    pic_as_list = list(BASE_PIC)  # String will be converted to a list (because of immutability of string)
+    print_basketball((1, 24))
+
+    counter = 0
     for ball_position in BALL_POSITIONS:
-        exercise = exercises.next_exercise()
         try:
-            with time_limit(8):
-                user_input(exercise)
+            with time_limit(5):
+                user_input(exercises.next_exercise())
         except TimeoutException as e:
             print("Time out!")
         else:
+            counter += 1
             print("Exercise solved!")
         print_basketball(ball_position)
 
-    print("Geschafft, der Ball ist im Korb !!")
+    print(f" Sie haben  {counter}  Aufgaben von  {len(BALL_POSITIONS)}  richtig")
     game_repeat = input("Nochmal spielen? (j/n) ")
     if game_repeat == "n":
         break

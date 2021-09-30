@@ -47,6 +47,10 @@ class RandomExercises:
         self.operators = mode_definitions[mode]
 
     def next_exercise(self):
+        """
+        generates random exercise (random operator , random operands)
+        :return: exercise as question (str) and answer (int)
+        """
         i = random.randrange(len(self.operators))
         operator = self.operators[i]
         operand1, operand2 = self.generate_operands(operator)
@@ -56,6 +60,9 @@ class RandomExercises:
 
     @staticmethod
     def generate_operands(operator):
+        """
+
+        """
         if operator == "+":
             operand1 = random.randrange(10, 100)
             operand2 = random.randrange(10, 100)

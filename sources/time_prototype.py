@@ -30,7 +30,7 @@ def long_function_call():
 
 if __name__ == "__main__":
     try:
-        with time_limit(8):
+        with time_limit(1):
             long_function_call()
     except TimeoutException as e:
         print("Timed out!")
