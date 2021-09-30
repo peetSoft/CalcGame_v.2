@@ -74,24 +74,27 @@ while mode not in modes:
     print("Falsche Eingabe")
     mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
 
+n_exercises = len(BALL_POSITIONS)
 exercises = RandomExercises(mode)
+max_time = exercises.max_time
 while True:
     pic_as_list = list(BASE_PIC)  # String will be converted to a list (because of immutability of string)
     print_basketball((1, 24))
 
     counter = 0
+
     for ball_position in BALL_POSITIONS:
         try:
-            with time_limit(5):
+            with time_limit(max_time):
                 user_input(exercises.next_exercise())
         except TimeoutException as e:
-            print("Time out!")
+            print("\n Time out!")
         else:
             counter += 1
             print("Exercise solved!")
         print_basketball(ball_position)
 
-    print(f" Sie haben  {counter}  Aufgaben von  {len(BALL_POSITIONS)}  richtig")
+    print(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig")
     game_repeat = input("Nochmal spielen? (j/n) ")
     if game_repeat == "n":
         break

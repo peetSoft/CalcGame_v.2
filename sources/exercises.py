@@ -35,16 +35,16 @@ class SimpleExercises:
 
 
 mode_definitions = {
-    "primitiv": ["+"],
-    "easy": ["+", "-"],
-    "normal": ["*", "-", "+", "/"],
-    "hard": ["*", "-", "+", "/"]
+    "primitiv": [["+"], 1000],
+    "easy": [["+", "-"], 10],
+    "normal": [["*", "-", "+", "/"], 8],
+    "hard": [["*", "-", "+", "/"], 5]
 }
 
 
 class RandomExercises:
     def __init__(self, mode):
-        self.operators = mode_definitions[mode]
+        self.operators, self.max_time = mode_definitions[mode]
 
     def next_exercise(self):
         """
