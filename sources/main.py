@@ -1,6 +1,5 @@
 from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
-
 import termcolor
 
 
