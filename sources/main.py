@@ -4,6 +4,8 @@ from time_prototype import time_limit, TimeoutException
 import termcolor
 
 
+# Test Text steht hier
+
 def print_basketball(position: list, color: str = "white") -> None:
     """
     Inserts the sign of a ball ("o") in the BASEPIC and prints the result
@@ -59,8 +61,10 @@ index_list = []
 for i in range(len(BASE_PIC)):
     if BASE_PIC[i] == '|':
         index_list.append(i)
-
-print("Versenke den Ball im Korb, indem du Matheaufgaben rechnest:")
+START_COLOR = "yellow"
+SUCCESS_COLOR = "green"
+FAILED_COLOR = "red"
+print(termcolor.colored("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n","magenta",None,["bold"]))
 modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
 mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
@@ -73,7 +77,7 @@ exercises = RandomExercises(mode)
 max_time = exercises.max_time
 while True:
     pic_as_list = list(BASE_PIC)  # String will be converted to a list (because of immutability of string)
-    print_basketball((1, 24))
+    print_basketball((1, 24), START_COLOR)
 
     counter = 0
 
@@ -83,10 +87,12 @@ while True:
                 user_input(exercises.next_exercise())
         except TimeoutException as e:
             print(termcolor.colored("\n Time out!", "red"))
+            color = FAILED_COLOR
         else:
             counter += 1
             print("Exercise solved!")
-        print_basketball(ball_position)
+            color = SUCCESS_COLOR
+        print_basketball(ball_position, color)
 
     print(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig")
     game_repeat = input("Nochmal spielen? (j/n) ")
