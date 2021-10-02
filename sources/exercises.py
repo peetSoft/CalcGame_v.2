@@ -1,4 +1,3 @@
-import colorama
 import random
 
 all_exercises = [
