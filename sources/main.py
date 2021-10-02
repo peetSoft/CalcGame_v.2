@@ -63,7 +63,10 @@ for i in range(len(BASE_PIC)):
 START_COLOR = "yellow"
 SUCCESS_COLOR = "green"
 FAILED_COLOR = "red"
-print(termcolor.colored("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n","magenta",None,["bold"]))
+print("\n")
+print(termcolor.colored("Versenke den Ball im Korb, indem du Matheaufgaben rechnest", "magenta", None,
+                        ["bold", "reverse"]))
+print("\n")
 modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
 mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
