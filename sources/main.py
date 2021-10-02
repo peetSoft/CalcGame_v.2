@@ -1,24 +1,18 @@
 from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
 
+import termcolor
 
-def print_basketball(position):
-    """
-    Diese Fun
-    @param position:
-    @return: None
 
-    """
+def print_basketball(position: list, color: str = "white") -> None:
     """
     Inserts the sign of a ball ("o") in the BASEPIC and prints the result
     @param position: Index of vertical bar and offset
+    @param color: Color of the ball
     @return None
-
-
     """
-
     vertical_bar_index, ball_offset = position
-    pic_as_list[index_list[vertical_bar_index] + ball_offset] = 'o'  # Sign of ball inserted
+    pic_as_list[index_list[vertical_bar_index] + ball_offset] = termcolor.colored('o', color)  # Sign of ball inserted
     pic_as_string = "".join(pic_as_list)  # List converted back to the string
     print(pic_as_string)
     print("\n")
@@ -88,7 +82,7 @@ while True:
             with time_limit(max_time):
                 user_input(exercises.next_exercise())
         except TimeoutException as e:
-            print("\n Time out!")
+            print(termcolor.colored("\n Time out!", "red"))
         else:
             counter += 1
             print("Exercise solved!")
