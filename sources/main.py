@@ -20,6 +20,13 @@ def print_basketball(position: list, color: str = "white") -> None:
 
 
 def user_input(exercise):
+    """
+    Taking input from user, checking for correctness.
+    If input is not a legitimate expression, or the result is incorrect
+    the user is asked again for input.
+    @param exercise: [Task for the user: str, the true answer: int] (list)
+    @return: None
+    """
     question, true_answer = exercise
     while True:
 
@@ -63,7 +70,7 @@ for i in range(len(BASE_PIC)):
 START_COLOR = "yellow"
 SUCCESS_COLOR = "green"
 FAILED_COLOR = "red"
-print(termcolor.colored("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n","magenta",None,["bold"]))
+print(termcolor.colored("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n", "magenta", None, ["bold"]))
 modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
 mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
@@ -93,8 +100,8 @@ while True:
             color = SUCCESS_COLOR
         print_basketball(ball_position, color)
 
-    print(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig")
-    game_repeat = input("Nochmal spielen? (j/n) ")
+    print(termcolor.colored(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig \n","red","on_grey", {"bold"}))
+    game_repeat = input(termcolor.colored("Nochmal spielen? (j/n) ","blue",None, {"bold"}))
     if game_repeat == "n":
         break
 
