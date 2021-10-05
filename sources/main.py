@@ -100,8 +100,8 @@ while True:
             color = SUCCESS_COLOR
         print_basketball(ball_position, color)
 
-    print(termcolor.colored(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig \n","red","on_grey", {"bold"}))
-    game_repeat = input(termcolor.colored("Nochmal spielen? (j/n) ","blue",None, {"bold"}))
+    print(termcolor.colored(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig","red","on_grey", {"bold"}))
+    game_repeat = input("Nochmal spielen? (j/n) ")
     if game_repeat == "n":
         break
 
