@@ -2,7 +2,7 @@ from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
 import termcolor
 
-
+# Push plz
 # Test Text steht hier
 
 def print_basketball(position: list, color: str = "white") -> None:
