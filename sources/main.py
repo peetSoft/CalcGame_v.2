@@ -1,3 +1,4 @@
+import numeral_system
 from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
 import termcolor
@@ -13,7 +14,8 @@ def print_basketball(position: list, color: str = "white") -> None:
     @return None
     """
     vertical_bar_index, ball_offset = position
-    pic_as_list[index_list[vertical_bar_index] + ball_offset] = termcolor.colored('o', color)  # Sign of ball inserted
+    pic_as_list[index_list[vertical_bar_index] + ball_offset] \
+    = termcolor.colored('o', color)  # Sign of ball inserted
     pic_as_string = "".join(pic_as_list)  # List converted back to the string
     print(pic_as_string)
     print("\n")
@@ -70,7 +72,8 @@ for i in range(len(BASE_PIC)):
 START_COLOR = "yellow"
 SUCCESS_COLOR = "green"
 FAILED_COLOR = "red"
-print(termcolor.colored("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n", "magenta", None, ["bold"]))
+print(termcolor.colored
+      ("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n", "magenta", None, ["bold"]))
 modes = mode_definitions.keys()
 modes_as_string = "/".join(modes)
 mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
@@ -100,7 +103,8 @@ while True:
             color = SUCCESS_COLOR
         print_basketball(ball_position, color)
 
-    print(termcolor.colored(f" Sie haben  {counter}  Aufgaben von  {n_exercises}  richtig","red","on_grey", {"bold"}))
+    print(termcolor.colored(f" Sie haben{counter}Aufgaben "
+                            f"von{n_exercises}richtig","red","on_grey", {"bold"}))
     game_repeat = input("Nochmal spielen? (j/n) ")
     if game_repeat == "n":
         break
