@@ -35,17 +35,9 @@ class SimpleExercises:
         return current_exercise, eval(current_exercise)  # returns list
 
 
-mode_definitions = {
-    "primitiv": [["+"], 1000],
-    "easy": [["+", "-"], 1000],
-    "normal": [["*", "-", "+", "/"], 8],
-    "hard": [["*", "-", "+", "/"], 5]
-}
-
-
 class RandomExercises:
-    def __init__(self, mode, numeral_system):
-        self.operators, self.max_time = mode_definitions[mode]
+    def __init__(self, mode_definition, numeral_system):
+        self.operators, self.max_time = mode_definition
         self.numeral_system = numeral_system
 
     def next_exercise(self):
