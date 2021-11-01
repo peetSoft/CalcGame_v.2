@@ -1,3 +1,4 @@
+from numeral_system import NumeralSystem
 import random
 
 all_exercises = [
@@ -36,15 +37,16 @@ class SimpleExercises:
 
 mode_definitions = {
     "primitiv": [["+"], 1000],
-    "easy": [["+", "-"], 10],
+    "easy": [["+", "-"], 1000],
     "normal": [["*", "-", "+", "/"], 8],
     "hard": [["*", "-", "+", "/"], 5]
 }
 
 
 class RandomExercises:
-    def __init__(self, mode):
+    def __init__(self, mode, numeral_system):
         self.operators, self.max_time = mode_definitions[mode]
+        self.numeral_system = numeral_system
 
     def next_exercise(self):
         """
@@ -54,9 +56,10 @@ class RandomExercises:
         i = random.randrange(len(self.operators))
         operator = self.operators[i]
         operand1, operand2 = self.generate_operands(operator)
-        exercise_as_str = str(operand1) + operator + str(operand2)
-        result = eval(exercise_as_str)
-        return exercise_as_str, result  # Verpacken
+        exercise_dec_as_str = str(operand1) + operator + str(operand2)
+        exercise_ns_as_str = self.numeral_system.code(operand1) + operator + self.numeral_system.code(operand2)
+        result = eval(exercise_dec_as_str)
+        return exercise_ns_as_str, result  # Verpacken
 
     @staticmethod
     def generate_operands(operator):
@@ -64,11 +67,11 @@ class RandomExercises:
 
         """
         if operator == "+":
-            operand1 = random.randrange(10, 100)
-            operand2 = random.randrange(10, 100)
+            operand1 = random.randrange(0, 10)
+            operand2 = random.randrange(0, 10)
         elif operator == "-":
-            operand1 = random.randrange(10, 100)
-            operand2 = random.randrange(10, 100)
+            operand1 = random.randrange(0, 10)
+            operand2 = random.randrange(0, 10)
             if operand2 > operand1:
                 temp = operand2
                 operand2 = operand1

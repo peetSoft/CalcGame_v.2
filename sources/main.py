@@ -1,12 +1,13 @@
-import numeral_system
+from numeral_system import NumeralSystem
 from exercises import SimpleExercises, RandomExercises, mode_definitions
 from time_prototype import time_limit, TimeoutException
 import termcolor
 
+
 # Push plz
 # Test Text steht hier
 
-def print_basketball(position: list, color: str = "white") -> None:
+def print_basketball(position: tuple, color: str = "white") -> None:
     """
     Inserts the sign of a ball ("o") in the BASEPIC and prints the result
     @param position: Index of vertical bar and offset
@@ -15,7 +16,7 @@ def print_basketball(position: list, color: str = "white") -> None:
     """
     vertical_bar_index, ball_offset = position
     pic_as_list[index_list[vertical_bar_index] + ball_offset] \
-    = termcolor.colored('o', color)  # Sign of ball inserted
+        = termcolor.colored('o', color)  # Sign of ball inserted
     pic_as_string = "".join(pic_as_list)  # List converted back to the string
     print(pic_as_string)
     print("\n")
@@ -35,7 +36,7 @@ def user_input(exercise):
         user_answer = input("Rechnen sie die Aufgabe: " + question + "=")
         # user_answer = true_answer ## Für Testzwecke
         try:
-            user_answer_as_int = int(user_answer)
+            user_answer_as_int = answer_numeral_system.decode(user_answer)
         except ValueError:
             print("Falsch ! Bitte geben sie eine ganze Zahl ein.")
             continue
@@ -72,6 +73,12 @@ for i in range(len(BASE_PIC)):
 START_COLOR = "yellow"
 SUCCESS_COLOR = "green"
 FAILED_COLOR = "red"
+
+numeral_systems = {
+    "b": NumeralSystem("01", "bin"),
+    "d": NumeralSystem("0123456789", "dec")
+}
+
 print(termcolor.colored
       ("\nVersenke den Ball im Korb, indem du Matheaufgaben rechnest\n", "magenta", None, ["bold"]))
 modes = mode_definitions.keys()
@@ -80,9 +87,16 @@ mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ").lower()
 while mode not in modes:
     print("Falsche Eingabe")
     mode = input("Wählen sie den Spielmodus -- " + modes_as_string + ": ")
+numeral_system_names = numeral_systems.keys()
+numeral_system_names_as_string = "/".join(numeral_system_names)
+question_numeral_system_name = input("Wählen sie ihr Zahlensystem für die Aufgaben --  "
+                            + numeral_system_names_as_string + ": ")
 
+
+question_numeral_system = numeral_systems[question_numeral_system_name]
+answer_numeral_system = NumeralSystem("01", "bin")
 n_exercises = len(BALL_POSITIONS)
-exercises = RandomExercises(mode)
+exercises = RandomExercises(mode, question_numeral_system)
 max_time = exercises.max_time
 while True:
     pic_as_list = list(BASE_PIC)  # String will be converted to a list (because of immutability of string)
@@ -104,7 +118,7 @@ while True:
         print_basketball(ball_position, color)
 
     print(termcolor.colored(f" Sie haben{counter}Aufgaben "
-                            f"von{n_exercises}richtig","red","on_grey", {"bold"}))
+                            f"von{n_exercises}richtig", "red", "on_grey", {"bold"}))
     game_repeat = input("Nochmal spielen? (j/n) ")
     if game_repeat == "n":
         break
