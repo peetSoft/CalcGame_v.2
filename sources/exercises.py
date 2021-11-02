@@ -48,16 +48,22 @@ class RandomExercises:
         i = random.randrange(len(self.operators))
         operator = self.operators[i]
         operand1, operand2 = self.generate_operands(operator)
-        exercise_dec_as_str = str(operand1) + operator + str(operand2)
-        exercise_ns_as_str = self.numeral_system.code(operand1) + operator + self.numeral_system.code(operand2)
+        exercise_dec_as_str = str(operand1) + operator
+        exercise_ns_as_str = self.numeral_system.code(operand1) + operator
+        if operand2 is not None:
+            exercise_dec_as_str += operand2
+            exercise_ns_as_str += operand2
         result = eval(exercise_dec_as_str)
         return exercise_ns_as_str, result  # Verpacken
 
     @staticmethod
     def generate_operands(operator):
         """
-
+        generates two none-negative integers. If operator = <empty> Second operand = None.
+        @param operator: +|-|*|/|<empty>
+        @return: list of two operands
         """
+
         if operator == "+":
             operand1 = random.randrange(0, 10)
             operand2 = random.randrange(0, 10)
@@ -71,8 +77,11 @@ class RandomExercises:
         elif operator == "*":
             operand1 = random.randrange(5, 15)
             operand2 = random.randrange(5, 15)
-        else:
+        elif operator == "/":
             operand2 = random.randrange(5, 15)
             result = random.randrange(5, 15)
             operand1 = result * operand2
+        else:
+            operand1 = random.randrange(4,16)
+            operand2 = None
         return operand1, operand2

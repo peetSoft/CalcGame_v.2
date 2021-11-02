@@ -5,14 +5,17 @@ import termcolor
 
 NUMERAL_SYSTEMS = {
     "b": NumeralSystem("01", "bin"),
-    "d": NumeralSystem("0123456789", "dec")
+    "d": NumeralSystem("0123456789", "dec"),
+    "o": NumeralSystem("01234567", "oct"),
+    "h": NumeralSystem("0123456789ABCDEF", "hex")
 }
 
 MODE_DEFINITIONS = {
+    "translator": [[""],1000],
     "primitiv": [["+"], 1000],
     "easy": [["+", "-"], 1000],
     "normal": [["*", "-", "+", "/"], 8],
-    "hard": [["*", "-", "+", "/"], 5]
+    "hard": [["*", "-", "+", "/"], 5],
 }
 
 BASE_PIC = ''' 
